@@ -6,9 +6,9 @@ const newURL = async (req, res) => {
     let { url } = req.body;
     if (!url) return res.json({ status: "error" });
 
-    if (!url.startsWith("http://") || !url.startsWith("https://")) {
-      url = `https://${url}`;
-    }
+    // if (!url.startsWith("http://") || !url.startsWith("https://")) {
+    //   url = `https://${url}`;
+    // }
 
     const hash = generateHash();
 
