@@ -10,7 +10,7 @@ const newURL = async (req, res) => {
       url = `https://${url}`;
     }
 
-    const hash = generateHash();
+    const hash = await generateHash();
 
     await db.Urls.create({ url, hash });
     res.json({ short: `${BASE_URL}/${hash}` });
@@ -38,12 +38,17 @@ const redirect = async (req, res) => {
   }
 };
 
-const generateHash = () => {
+const generateHash = async () => {
   const options =
     "1234567890poiuytrewqasdfghjklmnbvcxzQWERTYUIOPLKJHGFDSAZXCVBNM";
-  return Array.apply(null, Array(6))
+  const hash = Array.apply(null, Array(6))
     .map(() => options[Math.floor(Math.random() * options.length)])
     .join("");
+
+  console.log("count", await db.Urls.count({ hash }));
+  const alreadyExists = (await db.Urls.count({ hash })) > 0;
+  if (alreadyExists) return generateHash();
+  return hash;
 };
 
 module.exports = { newURL, findAll, redirect };
