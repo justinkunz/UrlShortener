@@ -1,6 +1,9 @@
 const db = require("../models");
-const { BASE_URL } = process.env;
+const { BASE_URL, DEPLOY_ENV } = process.env;
 
+/**
+ * Adds URL/Redirect record to db
+ */
 const newURL = async (req, res) => {
   try {
     let { url } = req.body;
@@ -20,11 +23,21 @@ const newURL = async (req, res) => {
   }
 };
 
+/**
+ * Returns all records (only if in dev mode)
+ */
 const findAll = async (req, res) => {
-  const data = await db.Urls.find({});
-  res.json(data);
+  if (DEPLOY_ENV === "dev") {
+    const data = await db.Urls.find({});
+    res.json(data);
+  } else {
+    res.status(401);
+  }
 };
 
+/**
+ * Redirects user to long URL
+ */
 const redirect = async (req, res) => {
   try {
     const param = req.params[0];
@@ -38,6 +51,9 @@ const redirect = async (req, res) => {
   }
 };
 
+/**
+ * Generates random 6 char hash
+ */
 const generateHash = async () => {
   const options =
     "1234567890poiuytrewqasdfghjklmnbvcxzQWERTYUIOPLKJHGFDSAZXCVBNM";
@@ -45,7 +61,6 @@ const generateHash = async () => {
     .map(() => options[Math.floor(Math.random() * options.length)])
     .join("");
 
-  console.log("count", await db.Urls.count({ hash }));
   const alreadyExists = (await db.Urls.count({ hash })) > 0;
   if (alreadyExists) return generateHash();
   return hash;
