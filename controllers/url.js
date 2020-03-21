@@ -31,7 +31,7 @@ const findAll = async (req, res) => {
     const data = await db.Urls.find({});
     res.json(data);
   } else {
-    res.status(401);
+    res.redirect("/");
   }
 };
 
