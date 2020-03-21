@@ -24,7 +24,7 @@ const showSpinner = show => {
 
 const showCopySuccess = () => {
   Swal.fire({
-    title: "Successly Copied link",
+    title: "Successly Copied Link",
     icon: "success"
   });
 };

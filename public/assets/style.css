@@ -52,3 +52,11 @@ body {
   color: #63ceaa;
   font-weight: 900;
 }
+
+/* SWAL Overrides */
+.swal2-icon.swal2-success .swal2-success-ring {
+  border-color: #63ceaa;
+}
+.swal2-styled.swal2-confirm {
+  background-color: #63ceaa;
+}
