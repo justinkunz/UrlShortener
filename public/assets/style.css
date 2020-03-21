@@ -1,10 +1,17 @@
+body {
+  text-align: center;
+  background-color: #282c34;
+  font-family: "Quicksand", sans-serif;
+}
+
 .shrt-btn {
   font-size: 20px;
   border-radius: 4px;
-  color: black;
+  color: #292c34;
   padding: 20px;
-  background-color: #009688;
+  background-color: #63ceaa;
   border: none;
+  font-family: "Quicksand", sans-serif;
 }
 
 .shrt-inpt {
@@ -18,7 +25,7 @@
 
 .app-title {
   display: block;
-  color: white;
+  color: #b8c1be;
   font-size: 40px;
   font-weight: 100;
   margin: 30px 0;
@@ -31,8 +38,17 @@
 .shrt-btn-cont {
   margin-top: 30px;
 }
-body {
-  text-align: center;
-  background-color: #282c34;
-  font-family: "Raleway", sans-serif;
+
+.footer {
+  color: #b8c1be;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+}
+
+.project-link {
+  text-decoration: none;
+  color: #63ceaa;
+  font-weight: 900;
 }
