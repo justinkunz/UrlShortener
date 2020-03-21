@@ -52,7 +52,7 @@ const redirect = async (req, res) => {
 };
 
 /**
- * Generates random 6 char hash
+ * Generates random 5 char hash
  */
 const generateHash = async () => {
   const options =

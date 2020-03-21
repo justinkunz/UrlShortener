@@ -21,6 +21,7 @@ const deleteExpired = async () => {
  * Schedule Deletion Job
  */
 const scheduleDelete = () => {
+  deleteExpired(); // <-- Trigger reschedule on server restart
   console.log("::Deletion job scheduled::");
   scheduleJob("0 0 * * *", deleteExpired); // <-- Run at midnight each day
 };
