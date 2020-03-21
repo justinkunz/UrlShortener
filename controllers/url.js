@@ -10,7 +10,7 @@ const newURL = async (req, res) => {
     if (!url) return res.json({ status: "error" });
 
     if (!url.startsWith("http://") && !url.startsWith("https://")) {
-      url = `https://${url}`;
+      url = `http://${url}`;
     }
 
     const hash = await generateHash();
@@ -57,7 +57,7 @@ const redirect = async (req, res) => {
 const generateHash = async () => {
   const options =
     "1234567890poiuytrewqasdfghjklmnbvcxzQWERTYUIOPLKJHGFDSAZXCVBNM";
-  const hash = Array.apply(null, Array(6))
+  const hash = Array.apply(null, Array(5))
     .map(() => options[Math.floor(Math.random() * options.length)])
     .join("");
 

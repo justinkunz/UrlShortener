@@ -1,14 +1,26 @@
 $(document).ready(() => {
-  $(".shrt-btn").on("click", async e => {
-    e.preventDefault();
-    const url = $(".shrt-inpt").val();
-    const { short } = await $.post({
-      url: "/api/url",
-      data: { url }
-    });
-    showShortUrl(short);
-  });
+  showSpinner(false);
+  $(".shrt-btn").on("click", shortenUrl);
 });
+
+const shortenUrl = async e => {
+  e.preventDefault();
+  const url = $(".shrt-inpt").val();
+  if (!url) return;
+  showSpinner(true);
+  const { short } = await $.post({
+    url: "/api/url",
+    data: { url }
+  });
+  showSpinner(false);
+  showShortUrl(short);
+};
+
+const showSpinner = show => {
+  const action = show ? "addClass" : "removeClass";
+  $(".app")[action]("spinner-bg-fade");
+  $(".spinner")[action]("spinner-active");
+};
 
 const showCopySuccess = () => {
   Swal.fire({
